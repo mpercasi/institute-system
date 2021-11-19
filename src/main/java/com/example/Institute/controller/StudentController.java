@@ -1,6 +1,8 @@
 package com.example.Institute.controller;
 
+import com.example.Institute.entity.AcademicRecord;
 import com.example.Institute.entity.Student;
+import com.example.Institute.entity.StudentRecord;
 import com.example.Institute.exceptions.NonExistentStudentException;
 import com.example.Institute.exceptions.StudentDuplicateException;
 import com.example.Institute.service.SystemService;
@@ -64,4 +66,22 @@ public class StudentController {
         system.deleteStudent(student);
         return ResponseEntity.ok("User deleted successfully!");
     }
+
+    @GetMapping("records/{dni}")
+    public ResponseEntity getStudentRecord(@PathVariable("dni") Integer dni) throws NonExistentStudentException {
+        Optional<Student> students = system.searchStudent(dni);
+        if(students.isEmpty()){
+            throw new NonExistentStudentException();
+        }
+        return ResponseEntity.ok(students.get().getAcademicRecords());
+    }
+
+//    @GetMapping("records/{dni}")
+//    public List<StudentRecord> getStudentRecord(@PathVariable("dni") Integer dni) throws NonExistentStudentException {
+//        Optional<Student> students = system.searchStudent(dni);
+//        if(students.isEmpty()){
+//            throw new NonExistentStudentException();
+//        }
+//        return system.getStudentRecord(dni);
+//    }
 }

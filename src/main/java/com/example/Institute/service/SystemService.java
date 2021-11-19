@@ -1,6 +1,7 @@
 package com.example.Institute.service;
 
 import com.example.Institute.entity.Student;
+import com.example.Institute.entity.StudentRecord;
 import com.example.Institute.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,9 @@ public class SystemService {
 
     public void deleteStudent(Student student) {
         studentRepository.delete(student);
+    }
+
+    public List<StudentRecord> getStudentRecord(int dni) {
+        return studentRepository.getStudentRecord(dni);
     }
 }
