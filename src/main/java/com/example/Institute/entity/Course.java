@@ -17,8 +17,9 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @OneToMany(cascade = {CascadeType.ALL})
-    @Column(name="Contenidos")
+//    @OneToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.ALL})
+//    @Column(name="Contenidos")
     private List<Content> contents = new ArrayList<>();
 
     public Course() {

@@ -1,5 +1,6 @@
 package com.example.Institute.configuration;
 
+import com.example.Institute.exceptions.NoExistentCourse;
 import com.example.Institute.exceptions.NonExistentStudentException;
 import com.example.Institute.exceptions.StudentDuplicateException;
 import org.springframework.http.HttpHeaders;
@@ -13,14 +14,15 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ExceptionInstituteHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({NonExistentStudentException.class})
+    @ExceptionHandler({NonExistentStudentException.class, NoExistentCourse.class})
     protected ResponseEntity<Object> handleNotFound(Exception ex, WebRequest request){
-        return handleExceptionInternal(ex, "Student not found", new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+        return handleExceptionInternal(ex, "Item not found", new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
     @ExceptionHandler({StudentDuplicateException.class})
     protected ResponseEntity<Object> handleDuplicate(Exception ex, WebRequest request){
-        return handleExceptionInternal(ex, "Student duplicated", new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+        return handleExceptionInternal(ex, "Item duplicated", new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
+
 
 }

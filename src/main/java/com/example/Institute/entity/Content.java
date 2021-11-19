@@ -26,4 +26,8 @@ public class Content {
         this.description = description;
         this.duration = duration;
     }
+
+    public int getCourseDuration(){
+        return 1;
+    }
 }

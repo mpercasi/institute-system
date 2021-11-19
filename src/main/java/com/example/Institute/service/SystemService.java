@@ -1,7 +1,10 @@
 package com.example.Institute.service;
 
+import com.example.Institute.entity.Course;
+import com.example.Institute.entity.CourseDetail;
 import com.example.Institute.entity.Student;
 import com.example.Institute.entity.StudentRecord;
+import com.example.Institute.repository.CourseRepository;
 import com.example.Institute.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +16,9 @@ import java.util.Optional;
 public class SystemService {
     @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    private CourseRepository courseRepository;
 
     //Students ----------------------------------------
     public Optional<Student> searchStudent(Integer dni) {
@@ -37,5 +43,11 @@ public class SystemService {
 
     public List<StudentRecord> getStudentRecord(int dni) {
         return studentRepository.getStudentRecord(dni);
+    }
+
+
+    //Courses ----------------------------------------
+    public List<Course> getAllCourses() {
+        return courseRepository.getAllCourses();
     }
 }
