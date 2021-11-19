@@ -50,4 +50,16 @@ public class SystemService {
     public List<Course> getAllCourses() {
         return courseRepository.getAllCourses();
     }
+
+    public Optional<Course> searchCourseById(int id) {
+        return courseRepository.searchCourseById(id);
+    }
+
+    public void registerCourse(Course course) {
+        courseRepository.save(course);
+    }
+
+    public void deleteCourse(Course course) {
+        courseRepository.delete(course);
+    }
 }

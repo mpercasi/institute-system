@@ -39,7 +39,6 @@ public class StudentController {
 
     @PostMapping
     public ResponseEntity createStudent(@RequestBody Student student) throws StudentDuplicateException {
-        System.out.println("Llegó una peticion");
         Optional<Student> students = system.searchStudent(student.getDni());
         if(!students.isEmpty()){
             throw new StudentDuplicateException();
